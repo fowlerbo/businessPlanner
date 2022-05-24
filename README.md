@@ -7,8 +7,7 @@ A business planner (ELABORATE)
 ## Page Built With
 
 - Semantic HTML 5
-- CSS FRAMEWORK HERE
-- Basic CSS 3
+- Bulma 0.9.4
 - JavaScript ES6 / ES2015
 - POSSIBLE JAVASCRIPT LIBRARY HERE
 
