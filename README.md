@@ -9,7 +9,8 @@ A business planner (ELABORATE)
 - Semantic HTML 5
 - Bulma 0.9.4
 - JavaScript ES6 / ES2015
-- POSSIBLE JAVASCRIPT LIBRARY HERE
+- jQuery 3.6.0
+- FullCalendar.io
 
 ## User Story
 
