@@ -20,7 +20,7 @@
     </header>
     <main class="columns mt-3 mx-3">
         <div class="column is-one-fifth"></div>
-        <div class="content column is-medium is-two-fifths">
+        <div id="intro-paragraph" class="content column is-medium is-two-fifths">
             Here is some sample text to further welcome visitors 
             to businessPlanner.  This can highlight certain features, 
             or give the latest news and updates!
@@ -41,12 +41,17 @@
             <button id="sign-in-button" class="button is-info">Sign in</button>
         </form>
         <div class="column is-one-fifth"></div>
-    <section id="calendar" class="hidden">
-    </section>
+        <br>
+    <div class="calendar-wrapper">
+        <div id="calendar" class="is-invisible">
+        </div>
+    </div>
+    
     </main>
     <footer>
         <div class="has-text-centered">©️2022 Bryant Fowler, Andrew Freeman, Corey Fuller and Joe Gallina</div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./assets/javascript/logic.js"></script>
 </body>
