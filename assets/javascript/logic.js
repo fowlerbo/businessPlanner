@@ -18,7 +18,14 @@ signInButton.addEventListener("click", function(event) {
 
 document.addEventListener('DOMContentLoaded', function() {
     var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
+      initialView: 'timeGridWeek',
+      selectable: true,
+      navLinks: true,
+      headerToolbar:  {
+          start: 'title',
+          center: 'dayGridMonth,timeGridWeek today prev,next',
+          end: 'prevYear,nextYear'
+        }
     });
 
     calendar.render(); 
