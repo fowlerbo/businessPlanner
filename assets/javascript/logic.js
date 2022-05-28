@@ -36,16 +36,32 @@ document.addEventListener('DOMContentLoaded', function() {
         endTime: '17:00'
       },
       footerToolbar: {
-        center: 'addEvent'
+        center: 'addEventButton'
+      },
+      customButtons: {
+        addEventButton: {
+          text: 'Add Event',
+          click: function() {
+            var userTitle = prompt('Give your event a name.')
+            var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+            var date = new Date(dateStr + 'T00:00:00');
+
+            if (!isNaN(date.valueOf())) {
+              calendar.addEvent({
+                title: userTitle,
+                start: date,
+                eventDisplay: 'auto'
+              });
+            } else {
+              alert('Invalid information.')
+            }
+          }
+        }
       }
     });
 
     calendar.render();
-    //may or may not be correct ???
-    var addEventButtonEl = document.getElementsByClassName("fc-addEvent-button");
-    addEventButtonEl.addEventListener('click', function() {
-      console.log("mike");
-    })  
+      
   });
 
 
