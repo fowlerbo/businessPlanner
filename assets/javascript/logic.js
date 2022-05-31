@@ -16,8 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
       navLinks: true,
       nowIndicator: true,
       height: "100vh",
-      //width: "100%",
-      //expandRows: true,
       buttonText: {
         addEvent: 'Add Event'
       },
@@ -129,8 +127,10 @@ document.addEventListener('DOMContentLoaded', function() {
       
       calendarEl.classList.remove('is-invisible');
       calendar.render();
+    
+    
 
-  });
+    });
     
   });
 
