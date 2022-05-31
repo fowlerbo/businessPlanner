@@ -2,10 +2,13 @@ var signInButton = document.querySelector("#sign-in-button");
 var formDisplay = document.querySelector("#sign-in-form");
 var welcomeWrapper = document.querySelector(".welcome-wrapper");
 var calendarEl = document.getElementById('calendar');
+var stockKey = "API_KEY92DYBC7BL2AM3H5A8BJ2IM4QVAEPY456";
 var stocksEl = document.querySelector("#stock-prices");
+var stock1 = document.querySelector("#stock1");
+var stock2 = document.querySelector("#stock2");
+var stock3 = document.querySelector("#stock3");
 var events = []
 var modal = document.querySelector(".modal")
-var stockKey = "API_KEY92DYBC7BL2AM3H5A8BJ2IM4QVAEPY456";
 //login to local storage
 //if login is true then dont show sign in
 
@@ -137,38 +140,61 @@ document.addEventListener('DOMContentLoaded', function() {
     
   });
 
-// Stock Ticker
+// Stock Prices
 var stockPrices = function() {
+  // Identify all three stock price API URLs
   var apiUrl1 = "https://api.finage.co.uk/last/stock/AAPL?apikey=" + stockKey;
   var apiUrl2 = "https://api.finage.co.uk/last/stock/TSLA?apikey=" + stockKey;
   var apiUrl3 = "https://api.finage.co.uk/last/stock/GOGL?apikey=" + stockKey;
-  console.log("apiUrl1: " + apiUrl1);
-  console.log("apiUrl2: " + apiUrl2);
-  console.log("apiUrl3: " + apiUrl3);
+  // Grab first stock API URL
   fetch(apiUrl1)
     .then(function(response) {
       if (response.ok) {
         response.json()
           .then(function(stockData1) {
-            var testing = JSON.stringify(stockData1.symbol);
-            console.log("testing:  " + testing);
-            // var date = new Date(JSON.stringify(data.current.dt)*1000).toLocaleDateString("en-US");
-            // var icon = JSON.stringify(data.current.weather[0].icon).slice(1, -1);
-            // cityDateEl.innerHTML = city + " " + date +
-            // "<img id='city-state-image' src='https://openweathermap.org/img/wn/" + icon + ".png'>";
-            // var temp = parseFloat((JSON.stringify(data.current.temp)-273.15)*1.8+32).toFixed(0);
-            // tempEl.textContent = "Temp: " + temp + "°F";
-            // var wind = parseFloat(JSON.stringify(data.current.wind_speed)).toFixed(0);
-            // windEl.textContent = "Wind: " + wind + " mph";
-            // var humidity = JSON.stringify(data.current.humidity);
-            // humidityEl.textContent = "Humidity: " + humidity + "%";
-            // var uvIndex = JSON.stringify(data.current.uvi);
-            // uvIndexEl.textContent = "UV Index: " + uvIndex;
+            // Grab first stock's symbol, and strip it of it's quotation marks
+            var stockName1 = JSON.stringify(stockData1.symbol).slice(1,-1);
+            // Grab first stock's asking price
+            var stockPrice1 = JSON.stringify(stockData1.ask);
+            // Combine previous two and format as HTML
+            stock1.innerHTML = "<p>" + stockName1 + " " + stockPrice1 + ",</p>";
           });
       } else {
-          console.log("stockPrices error response " + response.statusText);
+          console.log("stockPrices1 error response " + response.statusText);
+      };
+    });
+  // Grab second stock API URL
+  fetch(apiUrl2)
+    .then(function(response) {
+      if (response.ok) {
+        response.json()
+          .then(function(stockData2) {
+            // Grab second stock's symbol, and strip it of it's quotation marks
+            var stockName2 = JSON.stringify(stockData2.symbol).slice(1,-1);
+            // Grab second stock's asking price
+            var stockPrice2 = JSON.stringify(stockData2.ask);
+            // Combine previous two and format as HTML
+            stock2.innerHTML = "<p>" + stockName2 + " " + stockPrice2 + ",</p>";
+          });
+      } else {
+        console.log("stockPrices2 error response " + response.statusText);
+      };
+    });
+  // Grab third stock API URL
+  fetch(apiUrl3)
+    .then(function(response) {
+      if (response.ok) {
+        response.json()
+          .then(function(stockData3) {
+            // Grab third stock's symbol, and strip it of it's quotation marks
+            var stockName3 = JSON.stringify(stockData3.symbol).slice(1,-1);
+            // Grab third stock's asking price
+            var stockPrice3 = JSON.stringify(stockData3.ask);
+            // Combine previous two and combine as HTML
+            stock3.innerHTML = "<p>" + stockName3 + " " + stockPrice3 + "</p>";
+          });
+      } else {
+        console.log("stockPrices3 error response " + response.statusText);
       };
     });
 };
-  
-stockPrices();
