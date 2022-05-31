@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
         addEventButton: {
           text: 'Add Event',
           click: function() {
+            var userTitle = document.querySelector("#user-title").value;
+            var dateSelect= document.querySelector("#date-select").value;
+            var timeSelect = document.querySelector("#time-select").value;
             modal.classList.add("is-active");
             function openModal($el) {
               $el.classList.add('is-active');
@@ -68,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
               const $target = $close.closest('.modal');
           
               $close.addEventListener('click', () => {
+
                 closeModal($target);
               });
             });
@@ -80,15 +84,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 closeAllModals();
               }
             });
-            var userTitle = document.querySelector("#user-title");
-            var dateSelect= document.querySelector("#date-select");
-            var timeSelect = document.querySelector("#time-select");
+            
             var date = new Date(dateSelect + timeSelect);
             var eventId = 0;
             
             var eventInfo = {
-              title: userTitle.value,
-              start: date.value,        
+              title: userTitle,
+              start: date,        
               eventDisplay: 'auto',
               id: eventId
             }
