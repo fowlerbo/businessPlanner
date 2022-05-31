@@ -3,6 +3,7 @@ var formDisplay = document.querySelector("#sign-in-form");
 var welcomeWrapper = document.querySelector(".welcome-wrapper");
 var calendarEl = document.getElementById('calendar');
 var events = []
+var modal = document.querySelector(".modal")
 //login to local storage
 //if login is true then dont show sign in
 
@@ -37,14 +38,57 @@ document.addEventListener('DOMContentLoaded', function() {
         addEventButton: {
           text: 'Add Event',
           click: function() {
-            var userTitle = prompt('Give your event a name.');
-            var dateSelect= prompt('Enter a date in YYYY-MM-DD format');
-            var timeSelect = prompt('Enter a time in T00:00:00 format (ex. T14:00:00 will render 2:00 PM');
+            modal.classList.add("is-active");
+            function openModal($el) {
+              $el.classList.add('is-active');
+            }
+          
+            function closeModal($el) {
+              $el.classList.remove('is-active');
+            }
+          
+            function closeAllModals() {
+              (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+                closeModal($modal);
+              });
+            }
+          
+            // Add a click event on buttons to open a specific modal
+            (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+              const modal = $trigger.dataset.target;
+              const $target = document.getElementById(modal);
+          
+              $trigger.addEventListener('click', () => {
+                openModal($target);
+              });
+            });
+          
+            // Add a click event on various child elements to close the parent modal
+            (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+              const $target = $close.closest('.modal');
+          
+              $close.addEventListener('click', () => {
+                closeModal($target);
+              });
+            });
+          
+            // Add a keyboard event to close all modals
+            document.addEventListener('keydown', (event) => {
+              const e = event || window.event;
+          
+              if (e.keyCode === 27) { // Escape key
+                closeAllModals();
+              }
+            });
+            var userTitle = document.querySelector("#user-title");
+            var dateSelect= document.querySelector("#date-select");
+            var timeSelect = document.querySelector("#time-select");
             var date = new Date(dateSelect + timeSelect);
-            var eventId = 0
+            var eventId = 0;
+            
             var eventInfo = {
-              title: userTitle,
-              start: date,        
+              title: userTitle.value,
+              start: date.value,        
               eventDisplay: 'auto',
               id: eventId
             }
@@ -83,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       calendarEl.classList.remove('is-invisible');
       calendar.render();
+
   });
     
   });
