@@ -20,11 +20,10 @@ var saveChangesButton = document.querySelector("#save-changes");
 
 document.addEventListener('DOMContentLoaded', function() {
   
-    var dateSelect= document.querySelector("#date-select").value;
-    var timeSelect = document.querySelector("#time-select").value;
+    
  
     
-    var eventId = 1;
+    var eventId = Date();
     var calendar = new FullCalendar.Calendar(calendarEl, {
       //timeZone: 'UTC',
       initialView: 'dayGridMonth',
@@ -102,24 +101,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     saveChangesButton?.addEventListener("click", function() {
+      var dateSelect= document.querySelector("#date-select").value;
+      var timeSelect = document.querySelector("#time-select").value;
       var userTitle = document.querySelector("#user-title").value;
-      var userDate = dateSelect + timeSelect;
+      var userDate = new Date(dateSelect + timeSelect);
+      var savedEvents = JSON.parse(localStorage.getItem("Event-List"));
       var eventInfo = {
         title: userTitle,
         start: userDate,        
         eventDisplay: 'auto',
         id: eventId
       };
-      var addEventFunction = function() {
-        calendar.addEvent(eventInfo);
-        eventId++;
-        }  
-        events = [];
-        events.push(eventInfo);
-        console.log(eventInfo);
-        addEventFunction();
-        localStorage.setItem('Event-List', JSON.stringify(events));
-      })
+    var addEventFunction = function() {
+      calendar.addEvent(eventInfo);
+      }  
+      events = savedEvents || [];
+      events.push(eventInfo);
+      console.log(eventInfo);
+      addEventFunction();
+      localStorage.setItem('Event-List', JSON.stringify(events));
+      console.log(dateSelect, timeSelect);
+    })
     
       
     events = JSON.parse(localStorage.getItem("Event-List"));
