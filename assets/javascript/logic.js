@@ -167,7 +167,7 @@ var stockPrices = function() {
             // Grab first stock's asking price
             var stockPrice1 = JSON.stringify(stockData1.ask);
             // Combine previous two and format as HTML
-            stock1.innerHTML = "<p>" + stockName1 + " " + stockPrice1 + ",</p>";
+            stock1.innerHTML = "<p>" + stockName1 + " " + stockPrice1 + "</p>";
           });
       } else {
           console.log("stockPrices1 error response " + response.statusText);
@@ -184,7 +184,7 @@ var stockPrices = function() {
             // Grab second stock's asking price
             var stockPrice2 = JSON.stringify(stockData2.ask);
             // Combine previous two and format as HTML
-            stock2.innerHTML = "<p>" + stockName2 + " " + stockPrice2 + ",</p>";
+            stock2.innerHTML = "<p>" + stockName2 + " " + stockPrice2 + "</p>";
           });
       } else {
         console.log("stockPrices2 error response " + response.statusText);

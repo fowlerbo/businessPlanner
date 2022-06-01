@@ -20,15 +20,16 @@
         </div>
     </header>
     
-    <main class="columns mt-3 mx-3 is-justify-content-center">
-    <div class="welcome-wrapper">
+    <main>
+    <div class="welcome-wrapper columns mt-3 mx-3">
         <div class="column is-one-fifth"></div>
         <div id="intro-paragraph" class="content column is-medium is-two-fifths">
             Here is some sample text to further welcome visitors 
             to businessPlanner.  This can highlight certain features, 
             or give the latest news and updates!
         </div>
-        <form id = "sign-in-form" class="box column is-one-fifth">
+        <div class="box column is-one-fifth">
+        <form id = "sign-in-form">
             <div class="field">
               <label class="label">Username</label>
               <div class="control">
@@ -43,13 +44,14 @@
             </div>
             <button id="sign-in-button" class="button is-info">Sign in</button>
         </form>
+        </div>
         <div class="column is-one-fifth"></div>
     </div>
     <div class="calendar-wrapper container">
       <div id="stock-prices" class="columns">
-        <div id="stock1" class="column"></div>
-        <div id="stock2" class="column"></div>
-        <div id="stock3" class="column"></div>
+        <div id="stock1" class="column is-one-third"></div>
+        <div id="stock2" class="column is-one-third"></div>
+        <div id="stock3" class="column is-one-third"></div>
       </div>
       <div id="calendar" class="is-invisible">
       </div>
