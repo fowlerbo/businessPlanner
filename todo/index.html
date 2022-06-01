@@ -4,23 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
-    <link rel="stylesheet" href ="assests/stylesheet/style.css">
+    <link rel="stylesheet" href="./assests/stylesheet/style.css">
+    <title>my todo</title>
 </head>
 <body>
-    <header>
-        <h2>
-            To-Do List
-        </h2>
-        <input type="text" id="list-input" placeholder="Important Task to be Completed">
-        <span onclick="newElement()" class="button">SUBMIT</span>
-    </header>
-
-    <div id="list">
-        <ul>
+    
+    <div class="application">
+        <div>
+            <div class="userInput">
+                <input class="input" type="text" placeholder="Task to be Completed" value="">
+                <button class="submit">Add Task</button>
+            </div>
             
-        </ul>
+           
+            <div class="tasks">
+                
+            </div>
+            <button class="clearTask" onclick="clearTask()">Clear all Task</button>
+        </div>
     </div>
     <script src="./assests/Java/js.js"></script>
 </body>
 </html>
+
