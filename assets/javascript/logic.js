@@ -7,14 +7,21 @@ var stocksEl = document.querySelector("#stock-prices");
 var stock1 = document.querySelector("#stock1");
 var stock2 = document.querySelector("#stock2");
 var stock3 = document.querySelector("#stock3");
-var events = []
-var modal = document.querySelector(".modal")
+var events = [];
+var modal = document.querySelector(".modal");
+var saveChangesButton = document.querySelector("#save-changes");
+
+var userTitle = document.querySelector("#user-title");
+var dateSelect= document.querySelector("#date-select");
+var timeSelect = document.querySelector("#time-select");
+
 //login to local storage
 //if login is true then dont show sign in
 
 
 
 document.addEventListener('DOMContentLoaded', function() {
+  
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
       selectable: true,
@@ -41,9 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         addEventButton: {
           text: 'Add Event',
           click: function() {
-            var userTitle = document.querySelector("#user-title").value;
-            var dateSelect= document.querySelector("#date-select").value;
-            var timeSelect = document.querySelector("#time-select").value;
+            
             modal.classList.add("is-active");
             function openModal($el) {
               $el.classList.add('is-active');
@@ -88,33 +93,38 @@ document.addEventListener('DOMContentLoaded', function() {
               }
             });
             
-            var date = new Date(dateSelect + timeSelect);
-            var eventId = 0;
             
-            var eventInfo = {
-              title: userTitle,
-              start: date,        
-              eventDisplay: 'auto',
-              id: eventId
-            }
-            var addEventFunction = function() {
-              calendar.addEvent(eventInfo);
-              eventId++
-              }
             
-            events.push(eventInfo);
-            console.log(events)
             
-            addEventFunction();
             localStorage.setItem("Event List", JSON.stringify(events));
           }
         }
       }
     });
+
+    saveChangesButton?.addEventListener("click", function() {
+      var date = dateSelect + "T" + timeSelect;
+          var eventId = localStorage.getItem("time").length + 1;
+              
+          var eventInfo = {
+            title: userTitle,
+            start: date,        
+            eventDisplay: 'auto',
+            id: eventId
+          }
+          var addEventFunction = function() {
+            calendar.addEvent(eventInfo);
+            eventId++
+            }
+              
+          events.push(eventInfo);
+          console.log(events);
+          addEventFunction();
+    })
     
 
-    events = JSON.parse(localStorage.getItem("Event List"));
-    for (i = 0; i<events.length; i++) {
+    events = JSON.parse(localStorage.getItem("Event List")).length;
+    for (i = 0; i<events?.length; i++) {
       calendar.addEvent(events[i]);
     }
     calendar.updateSize();
@@ -131,16 +141,14 @@ document.addEventListener('DOMContentLoaded', function() {
       formDisplay.classList.add('is-invisible');
       
       calendarEl.classList.remove('is-invisible');
-      stocksEl.classList.remove('is-invisible');
       calendar.render();
       stockPrices();
-    
 
     });
     
   });
 
-// Stock Prices
+  // Stock Prices
 var stockPrices = function() {
   // Identify all three stock price API URLs
   var apiUrl1 = "https://api.finage.co.uk/last/stock/AAPL?apikey=" + stockKey;
@@ -197,4 +205,4 @@ var stockPrices = function() {
         console.log("stockPrices3 error response " + response.statusText);
       };
     });
-};
+}; 
