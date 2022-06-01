@@ -14,9 +14,8 @@ A business planner (ELABORATE)
 
 ## User Story
 
-AS AN office manager,  
-I WANT to be able to see my upcoming events, view stock information,  
-SO I can schedule my events and plan around holidays, as well as keep track of what's happening in the stock market.
+As an upcoming day trader and entrepreneur,
+I desire an organizer that has the ability to track the stock market and future business meetings with potential investors. I also want to be able to utilize a digital suite for daily productivity. This app would be able to keep my business current with the market ultimately increasing productivity and time management for myself.
 
 ## Usage
 
