@@ -11,10 +11,17 @@ var events = [];
 var modal = document.querySelector(".modal");
 var saveChangesButton = document.querySelector("#save-changes");
 
-var userTitle = document.querySelector("#user-title");
-var dateSelect= document.querySelector("#date-select");
-var timeSelect = document.querySelector("#time-select");
-
+var userTitle = document.querySelector("#user-title").value;
+var dateSelect= document.querySelector("#date-select").value;
+var timeSelect = document.querySelector("#time-select").value;
+var eventInfo = {
+  title: userTitle,
+  start: date,        
+  eventDisplay: 'auto',
+  id: eventId
+};
+var date = dateSelect + "T" + timeSelect;
+var eventId = localStorage.getItem("Event-List") + 1;
 //login to local storage
 //if login is true then dont show sign in
 
@@ -92,41 +99,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 closeAllModals();
               }
             });
-            
-            
-            
-            
-            localStorage.setItem("Event List", JSON.stringify(events));
           }
         }
       }
     });
 
     saveChangesButton?.addEventListener("click", function() {
-      var date = dateSelect + "T" + timeSelect;
-          var eventId = localStorage.getItem("time").length + 1;
-              
-          var eventInfo = {
-            title: userTitle,
-            start: date,        
-            eventDisplay: 'auto',
-            id: eventId
-          }
-          var addEventFunction = function() {
-            calendar.addEvent(eventInfo);
-            eventId++
-            }
-              
-          events.push(eventInfo);
-          console.log(events);
-          addEventFunction();
-    })
+      var addEventFunction = function() {
+          calendar.addEvent(eventInfo);
+          eventId++;
+          events = [];
+          }  
+        
+        events.push(eventInfo);
+        console.log(eventInfo);
+        addEventFunction();
+      })
     
 
-    events = JSON.parse(localStorage.getItem("Event List")).length;
-    for (i = 0; i<events?.length; i++) {
-      calendar.addEvent(events[i]);
-    }
+    events = JSON.parse(localStorage.getItem("Event-List"));
+      for (i = 0; i<events?.length; i++) {
+        calendar.addEvent(events[i]);
+      }
+    
     calendar.updateSize();
     calendar.render();
     
