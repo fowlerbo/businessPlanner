@@ -11,17 +11,8 @@ var events = [];
 var modal = document.querySelector(".modal");
 var saveChangesButton = document.querySelector("#save-changes");
 
-var userTitle = document.querySelector("#user-title").value;
-var dateSelect= document.querySelector("#date-select").value;
-var timeSelect = document.querySelector("#time-select").value;
-var eventInfo = {
-  title: userTitle,
-  start: date,        
-  eventDisplay: 'auto',
-  id: eventId
-};
-var date = dateSelect + "T" + timeSelect;
-var eventId = localStorage.getItem("Event-List") + 1;
+
+
 //login to local storage
 //if login is true then dont show sign in
 
@@ -29,7 +20,13 @@ var eventId = localStorage.getItem("Event-List") + 1;
 
 document.addEventListener('DOMContentLoaded', function() {
   
+    var dateSelect= document.querySelector("#date-select").value;
+    var timeSelect = document.querySelector("#time-select").value;
+ 
+    
+    var eventId = 1;
     var calendar = new FullCalendar.Calendar(calendarEl, {
+      //timeZone: 'UTC',
       initialView: 'dayGridMonth',
       selectable: true,
       navLinks: true,
@@ -105,18 +102,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     saveChangesButton?.addEventListener("click", function() {
+      var userTitle = document.querySelector("#user-title").value;
+      var userDate = dateSelect + timeSelect;
+      var eventInfo = {
+        title: userTitle,
+        start: userDate,        
+        eventDisplay: 'auto',
+        id: eventId
+      };
       var addEventFunction = function() {
-          calendar.addEvent(eventInfo);
-          eventId++;
-          events = [];
-          }  
-        
+        calendar.addEvent(eventInfo);
+        eventId++;
+        }  
+        events = [];
         events.push(eventInfo);
         console.log(eventInfo);
         addEventFunction();
+        localStorage.setItem('Event-List', JSON.stringify(events));
       })
     
-
+      
     events = JSON.parse(localStorage.getItem("Event-List"));
       for (i = 0; i<events?.length; i++) {
         calendar.addEvent(events[i]);
