@@ -21,7 +21,7 @@ I desire an organizer that has the ability to track the stock market and future 
 
 To Be Written
 
-![Screenshot of Website](assets/images/websiteScreenShoot.png)
+![Screenshot of the businessPlanner Website](assets/images/websiteScreenShoot.png)
 
 ## Website URL
 
